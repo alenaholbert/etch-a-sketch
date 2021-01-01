@@ -1,0 +1,18 @@
+.board {
+    background-color: pink;
+    display: flex;
+    width: 500px;
+    height: 500px;
+}
+.cell {
+    background-color: white;
+    border-style: solid;
+    border-color: lightgray;
+    border-width: 1px;
+}
+
+/*
+.cell:hover {
+    background-color: black;
+}
+*/
