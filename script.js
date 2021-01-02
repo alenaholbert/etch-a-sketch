@@ -3,11 +3,15 @@ page = document.querySelector("body");
 board = document.createElement("div");
 board.classList.add("board");
 
-slider = document.querySelector(".sizeSelector");
+slider = document.querySelector("#sizeSelector");
 slider.addEventListener('mouseup', changeBoardSize);
 
+colorSelector = document.querySelector("#colorSelector");
+colorSelector.addEventListener('input', updateColor);
 
 page.appendChild(board);
+
+penColor = 'black';
 
 function changeBoardSize() {
     cells.forEach(cell => cell.remove());
@@ -21,7 +25,7 @@ function buildBoard(numRows, numCols) {
         for (c = 0; c < numCols; c++) {
             cell = document.createElement("div");
             cell.classList.add("cell");
-            cell.setAttribute('style', `width: ${500/numRows}px; height: ${500/numRows}px;`);
+            cell.setAttribute('style', `width: ${((500-2*numRows)/numRows)}px; height: ${(500-2*numRows)/numRows}px;`);
             row.appendChild(cell);
         }
         board.appendChild(row);
@@ -34,8 +38,12 @@ function buildBoard(numRows, numCols) {
     activatePen();
 }
 
+function updateColor() {
+    penColor = this.value;
+}
+
 function colorCell() {
-    this.style.background = 'black';
+    this.style.background = penColor;
 }
 
 function clearCell() {

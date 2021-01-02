@@ -6,13 +6,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <p>click on board to pick up/put down pen/eraser</p>
-  <button class="clear button">Clear</button>
+  <div class="menu">
+    <p><strong>Click on board to pick up/put down pen/eraser</strong> </p>
+    <div class="buttons">
+      <button class="clear button">Clear</button>
 
-  <button class="eraser button">eraser</button>
-  <p>Pixel Size</p>
-  <input type="range" min="2" max="50" value="16" class="sizeSelector" class="slider">
-  <p>Smallest to Largest</p>
+      <button class="eraser button">eraser</button>
+
+      <input type="color" id="colorSelector" name="color" value="#000000" class="button">
+      <label for="head">: Pen Color</label>
+    </div>
+
+    <p>Pixel Size</p>
+    <input type="range" min="2" max="50" value="16" id="sizeSelector" class="slider">
+    <p>Smallest to Largest</p>
+
+  </div>
     
   <script src=script.js></script>
 </body>

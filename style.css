@@ -1,8 +1,23 @@
+.menu {
+    width: 50%;
+    display: block;
+    float: left;
+    margin-top: 15%;
+    text-align: center;
+}
+
+.buttons {
+    display: block;
+    margin: 10px;
+}
+
 .board {
     background-color: pink;
     display: flex;
     width: 500px;
     height: 500px;
+    margin-top: 40px;
+    padding: 30px;
 }
 .cell {
     background-color: white;
@@ -10,9 +25,3 @@
     border-color: lightgray;
     border-width: 1px;
 }
-
-/*
-.cell:hover {
-    background-color: black;
-}
-*/
