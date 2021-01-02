@@ -28,6 +28,9 @@ function buildBoard(numRows, numCols) {
     }
     cells = document.querySelectorAll(".cell");
     penOn = true;
+    eraserOn = false;
+    penMode = true;
+    eraserMode = false;
     activatePen();
 }
 
@@ -35,23 +38,75 @@ function colorCell() {
     this.style.background = 'black';
 }
 
+function clearCell() {
+    this.style.background = 'white';
+}
+
 function togglePen() {
     if (penOn) {
         deactivatePen();
-        penOn = false;
     }
     else {
         activatePen();
-        penOn = true;
     }
 }
 
 function activatePen() {
     cells.forEach(cell => cell.addEventListener('mousemove', colorCell));
+    penOn = true;
 }
 
 function deactivatePen() {
     cells.forEach(cell => cell.removeEventListener('mousemove', colorCell));
+    penOn = false;
+}
+
+function toggle(){
+    console.log("eraser mode: " + eraserMode);
+    console.log("pen mode: " + penMode);
+    if (eraserMode) {
+        toggleEraser();
+    }
+    else if (penMode) {
+        togglePen();
+    }
+}
+
+function toggleEraser() {
+    if (eraserOn) {
+        deactivateEraser();
+    }
+    else {
+        activateEraser();
+    }
+}
+
+function switchEraser() {
+    // TURN OFF ERASER MODE/RELEASE BUTTON
+    if (eraserMode) {
+        deactivateEraser();
+        eraserButton.removeAttribute('style');
+        eraserMode = false;
+        penMode = true;
+    }
+    // TURN ON ERASER MODE/PRESS BUTTON
+    else {
+        eraserButton.style.shadow = '5px';
+        eraserButton.style.backgroundColor = 'gray';
+        eraserMode = true;
+        penMode = false;
+    }
+}
+
+function activateEraser() {
+    deactivatePen();
+    cells.forEach(cell => cell.addEventListener('mousemove', clearCell));
+    eraserOn = true;
+}
+
+function deactivateEraser() {
+    cells.forEach(cell => cell.removeEventListener('mousemove', clearCell));
+    eraserOn = false;
 }
 
 function clearBoard() {
@@ -60,7 +115,10 @@ function clearBoard() {
 
 buildBoard(16,16);
 
-clearButton = document.querySelector(".clearButton");
+clearButton = document.querySelector(".clear");
 clearButton.addEventListener('click', clearBoard);
 
-board.addEventListener('click', togglePen);
+eraserButton = document.querySelector(".eraser");
+eraserButton.addEventListener('click', switchEraser);
+
+board.addEventListener('click', toggle);
